@@ -16,6 +16,7 @@ int main()
     h1.insert(2, 20);
     cout << "rozmiar: ";
     cout<<h1.return_size();
+    cout<<endl;
    
 
     h1.show();
