@@ -18,10 +18,11 @@ Heap::Heap()
 
 Heap::~Heap()
 {
-	//for (int i = 0; i < size; ++i)
-	//{
-	//	delete& tab[i];
-	//}
+	/*
+	for (int i = 0; i < size; ++i)
+	{
+		delete &tab[i];
+	}*/
 
 	delete[] tab;
 }
@@ -95,6 +96,13 @@ void Heap::insert(int e, int p)
 
 void Heap::extract_max()
 {
+	//Sprawdzamy czy kopiec nie jest juz pusty
+	if (size == 0)
+	{
+		cout << "Kopiec jest juz pusty" << endl;
+		return;
+	}
+
 	Node p = tab[0];
 
 	tab[0] = tab[size - 1];
@@ -111,8 +119,10 @@ void Heap::extract_max()
 
 	while (i < size)
 	{
+		//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka lewego
 		if (tab[i].priority < tab[jL].priority)
 		{
+			//Zamieniamy rodzica z dzieckiem lewym
 			Node temp = tab[i];
 			tab[i] = tab[jL];
 			tab[jL] = temp;
@@ -123,16 +133,22 @@ void Heap::extract_max()
 		}
 		else
 		{
-			Node temp = tab[i];
-			tab[i] = tab[jP];
-			tab[jP] = temp;
+			//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka prawego
+			if (tab[i].priority < tab[jP].priority)
+			{
+				//Zamieniamy rodzica z dzieckiem prawym
+				Node temp = tab[i];
+				tab[i] = tab[jP];
+				tab[jP] = temp;
 
-			i = jP;
-			jL = 2 * i + 1;
-			jP = 2 * i + 2;
+				i = jP;
+				jL = 2 * i + 1;
+				jP = 2 * i + 2;
+			}
 		}
 
-		if ((tab[i].priority >= tab[jL].priority)&&(tab[i].priority >= tab[jP].priority))
+		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/równy jemu)
+		if ((tab[i].priority >= tab[jL].priority) && (tab[i].priority >= tab[jP].priority))
 		{
 			break;
 		}
@@ -145,18 +161,128 @@ void Heap::extract_max()
 void Heap::find_max() const
 {
 	cout << "Maksymlany priorytet znajduje sie w korzeniu i wynosi: ";
+
+	//Najwiekszy priorytet znajduje sie w korzeniu
 	cout << tab[0].priority << ", a wrtosc elementu to: " << tab[0].element << endl;
 	{
 		cout << "Inne elementy o tym priorytecie to: " << endl;
+		int j = 0;
+
+		//Iteruejmy po elementach szukajac takiego, ktory ma element rowny korzeniowi
 		for (int i = 1; i < size; i++)
 		{
 			if (tab[i].priority == tab[0].priority)
 			{
-				cout << tab[i].priority << ", a wartosc elementu to: " << tab[i].element<<endl;
+				cout << tab[i].priority << ", a wartosc elementu to: " << tab[i].element << endl;
+				j++;
+			}
+		}
+
+		if (j == 0)
+		{
+			cout << "Brak innych elementow o tym priorytecie" << endl;
+		}
+	}
+}
+
+void Heap::modify_key(int e, int p)
+{
+	//Sprawdzenie czy zadany priorytet jest wiekszy czy mniejszy od obecnego
+	for (int i = 0; i < size; i++)
+	{
+		if (tab[i].element == e)
+		{
+			if (p > tab[i].priority)
+			{
+				increase_key(e, p, i);
+			}
+
+			else
+			{
+				decrease_key(e, p, i);
 			}
 		}
 	}
 }
+
+void Heap::increase_key(int e, int p, int i)
+{
+	//Zmiana priorytetu
+	tab[i].priority = p;
+
+	//Indeks dziecka
+	int child = i;
+
+	//Indeks rodzica
+	int parent = (child - 1) / 2;
+
+	//Wykonujemy dopóki priorytet dziecka jest wiêkszy ni¿ rodzica i jednoczeœnie dziecko nie jest korzeniem
+	while ((tab[child].priority > tab[parent].priority) && (child != 0))
+	{
+		//Zamiana miejscami rodzica z dzieckiem
+		Node temp = tab[parent];
+		tab[parent] = tab[child];
+		tab[child] = temp;
+
+		child = parent;
+		parent = (child - 1) / 2;
+	}	
+}
+
+void Heap::decrease_key(int e, int p, int i)
+{
+	//Zmiana priorytetu
+	tab[i].priority = p;
+
+	//Indeks rodzica
+	int parent = i;
+
+	//Indeks dziecka lewego
+	int childL = parent * 2 +1;
+
+	//Indeks dziecka prawego
+	int childP = parent * 2 + 2;
+
+	while (parent < size)
+	{
+		//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka lewego
+		if (tab[parent].priority < tab[childL].priority)
+		{
+			//Zamieniamy rodzica z dzieckiem lewym
+			Node temp = tab[parent];
+			tab[parent] = tab[childL];
+			tab[childL] = temp;
+
+			parent = childL;
+			childL = parent * 2 + 1;
+			childP = parent * 2 + 2;
+		}
+
+		else
+		{
+			//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka prawego
+			if (tab[parent].priority < tab[childP].priority)
+			{
+				//Zamieniamy rodzica z dzieckiem prawym
+				Node temp = tab[parent];
+				tab[parent] = tab[childP];
+				tab[childP] = temp;
+
+				parent = childP;
+				childL = parent * 2 + 1;
+				childP = parent * 2 + 2;
+			}
+		}
+
+		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/równy jemu)
+		if ((tab[parent].priority >= tab[childL].priority) && (tab[parent].priority >= tab[childP].priority))
+		{
+			break;
+		}
+	}
+}
+
+
 
 int Heap::return_size() 
 {

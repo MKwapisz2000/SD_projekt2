@@ -22,6 +22,9 @@ int main()
     cout << endl;
     h1.extract_max();
     h1.show();
+    //h1.modify_key(2, 5);;
+    //h1.extract_max();
+    //h1.show();
     h1.find_max();
     return 0;
 }
