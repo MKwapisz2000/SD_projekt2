@@ -299,3 +299,7 @@ void Heap::show() const
 	cout << "KONIEC" << endl;
 }
 
+void Heap::clear()
+{
+	size = 0;
+}

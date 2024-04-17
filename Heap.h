@@ -30,4 +30,5 @@ public:
 	void decrease_key(int index, int p, int i);
 	int return_size();
 	void show() const;
+	void clear();
 };
