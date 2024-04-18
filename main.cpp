@@ -23,14 +23,14 @@ int main()
     auto total_time = 0ns;
 
     // Liczba pomiarów
-    int measurements = 10;
+    int measurements = 100;
 
-    // Wczytywanie danych z pliku i pomiar czasu 10 razy
-    for (int i = 0; i < 10; ++i)
+    // Wczytywanie danych z pliku i pomiar czasu 100 razy
+    for (int i = 0; i < 100; ++i)
     {
         // Wczytywanie danych z pliku
         ifstream plik;
-        string nazwa = "dane_2k_pop1.txt";
+        string nazwa = "dane_2k_pop5.txt";
 
         plik.open(nazwa, ios::out);
         if (!plik.good())
@@ -46,6 +46,7 @@ int main()
             h1.insert(liczba, priorytet);
         }
         plik.close();
+        
 
     //.....................................................................................................
 
