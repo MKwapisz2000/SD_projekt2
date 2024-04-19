@@ -12,6 +12,7 @@ int main()
 
 
 	Heap h1;
+	LinkedList l1;
 	
 	//.......................................................................................................
    
@@ -44,6 +45,7 @@ int main()
         while (plik >> liczba >> priorytet)
         {
             h1.insert(liczba, priorytet);
+	    l1.insert(liczba, priorytet);
         }
         plik.close();
         
@@ -58,6 +60,7 @@ int main()
     // Pomiar czasu dla pojedynczego wywołania funkcji 
         auto begin = chrono::high_resolution_clock::now();
         h1.insert(8, 10);
+	l1.inser(8,10);
         auto end = chrono::high_resolution_clock::now();
         auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
 
@@ -66,7 +69,7 @@ int main()
 
         // Czyszczenie struktury
         h1.clear();
-
+	l1.clear();
     }
 
     // Obliczenie średniego czasu wykonania
