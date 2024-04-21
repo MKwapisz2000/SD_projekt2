@@ -89,6 +89,8 @@ void Heap::insert(int e, int p)
 		}
 	}
 
+	
+
 
 	//Zwiêkszenie rozmiaru
 	size++;
@@ -188,6 +190,7 @@ void Heap::find_max() const
 void Heap::modify_key(int e, int p)
 {
 	//Sprawdzenie czy zadany priorytet jest wiekszy czy mniejszy od obecnego
+	int licznik = 0;
 	for (int i = 0; i < size; i++)
 	{
 		if (tab[i].element == e)
@@ -202,7 +205,28 @@ void Heap::modify_key(int e, int p)
 				decrease_key(e, p, i);
 			}
 		}
+
+		else
+		{
+			licznik++;
+		}
 	}
+	if (licznik == size)
+	{
+		cout << "Podany element nie istnieje w tym zbiorze." << endl;
+	}
+
+	int index = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if ((tab[i].element == e) && (tab[i].priority == p))
+		{
+			index = i;
+			break;
+		}
+	}
+
+	cout << "Element o zmienionym priorytecie znajduje sie na pozycji " << index + 1 << endl;
 }
 
 void Heap::increase_key(int e, int p, int i)
@@ -294,7 +318,7 @@ void Heap::show() const
 	cout << "POCZATEK" <<endl;
 	for (int i = 0; i < size; i++)
 	{
-		cout << i << ".) " << tab[i].priority << endl;
+		cout << i+1 << ".) " << tab[i].priority << endl;
 	}
 	cout << "KONIEC" << endl;
 }
