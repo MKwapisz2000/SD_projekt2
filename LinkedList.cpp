@@ -202,7 +202,7 @@ void LinkedList::show() const {
     int i = 0;
     // Przechodzenie po liście i wyświetlanie wartości oraz priorytetów elementów
     while (curr) {
-        cout << i << ".) " << curr->priority << endl;
+        cout << i +1<< ".) " << curr->priority << endl;
         curr = curr->next;
         i++;
     }
