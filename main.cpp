@@ -189,29 +189,29 @@ int main()
 			{
 				cout << "Podaj wartosc elementu ktory chcesz dodac oraz jego priorytet: ";
 				cin >> e >> p;
-				//h1.insert(e, p);
+				l1.insert(e, p);
 				cout << endl;
 				system("cls");
-				//cout << "Obecny rozmiar: " << h1.return_size() << endl;
-				//h1.show();
+				cout << "Obecny rozmiar: " << l1.return_size() << endl;
+				l1.show();
 
 				break;
 			}
 
 			case 'b':
 			{
-				//h1.extract_max();
+				l1.extract_max();
 				cout << endl;
 				system("cls");
-				//cout << "Obecny rozmiar: " << h1.return_size() << endl;
-				//h1.show();
+				cout << "Obecny rozmiar: " << l1.return_size() << endl;
+				l1.show();
 
 				break;
 			}
 
 			case 'c':
 			{
-				//h1.find_max();
+				l1.find_max();
 
 				break;
 			}
@@ -220,18 +220,18 @@ int main()
 			{
 				cout << "Podaj wartosc elementu ktorego priorytet chcesz zmienic oraz jego nowy priorytet: ";
 				cin >> e >> p;
-				//h1.modify_key(e, p);
+				l1.modify_key(e, p);
 				cout << endl;
 
-				//cout << "Obecny rozmiar: " << h1.return_size() << endl;
-				//h1.show();
+				cout << "Obecny rozmiar: " << l1.return_size() << endl;
+				l1.show();
 
 				break;
 			}
 
 			case 'e':
 			{
-				//cout << "Obecny rozmiar: " << h1.return_size() << endl;
+				cout << "Obecny rozmiar: " << l1.return_size() << endl;
 
 				break;
 			}
