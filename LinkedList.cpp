@@ -288,5 +288,6 @@ void LinkedList::clear()
         head = head->next;
         delete temp; // Zwolnienie pamięci zajmowanej przez usuwany element
     }
+    head = nullptr;
 }
 
