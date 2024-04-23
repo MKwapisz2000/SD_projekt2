@@ -7,7 +7,7 @@ public:
     int priority; // Priorytet elementu
     Nod* next; // Wskaźnik na następny element
 
-    Nod(int d, int prio) : data(d), priority(prio), next(nullptr) {}
+    Nod(int d, int prio); // Konstruktor
 };
 
 // Klasa reprezentująca listę priorytetową
@@ -16,8 +16,8 @@ private:
     Nod* head; // Wskaźnik na pierwszy element listy
 
 public:
-    LinkedList() : head(nullptr) {}
-    ~LinkedList();
+    LinkedList(); // Konstruktor
+    ~LinkedList(); // Destruktor
 
     // Metoda dodająca element o priorytecie p
     void insert(int e, int p);
@@ -26,7 +26,7 @@ public:
     void extract_max();
 
     // Metoda zwracająca (podejrzenie) element o największym priorytecie
-    int find_max() const;
+    void find_max() const;
 
     // Metoda modyfikująca priorytet elementu e na p
     void modify_key(int e, int p);
@@ -46,5 +46,3 @@ public:
     // Metoda czyszcząca listę
     void clear();
 };
-
-
