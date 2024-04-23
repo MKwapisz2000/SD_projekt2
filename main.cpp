@@ -103,7 +103,7 @@ int main()
 			cout << "Wybierz funkcje z ktorej chcesz skorzystac:" << endl
 				<< "[a] insert(e, p)" << endl
 				<< "[b] extract_max()" << endl
-				<< "[c] finf_max()" << endl
+				<< "[c] find_max()" << endl
 				<< "[d] modify_key(e, p)" << endl
 				<< "[e] return_size()" << endl;
 
@@ -176,7 +176,7 @@ int main()
 			cout << "Wybierz funkcje z ktorej chcesz skorzystac:" << endl
 				<< "[a] insert(e, p)" << endl
 				<< "[b] extract_max()" << endl
-				<< "[c] finf_max()" << endl
+				<< "[c] find_max()" << endl
 				<< "[d] modify_key(e, p)" << endl
 				<< "[e] return_size()" << endl;
 
