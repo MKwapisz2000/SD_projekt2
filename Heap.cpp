@@ -18,12 +18,7 @@ Heap::Heap()
 
 Heap::~Heap()
 {
-	/*
-	for (int i = 0; i < size; ++i)
-	{
-		delete &tab[i];
-	}*/
-
+	
 	delete[] tab;
 }
 
@@ -57,10 +52,10 @@ void Heap::insert(int e, int p)
 		increase_capacity();
 	}
 
-	//Stworzenie nowego wêz³a (elementu klejki)
+	//Stworzenie nowego wÄ™zÅ‚a (elementu klejki)
 	Node* new_node = new Node(e, p);
 
-	//Dodanie wêz³a na koniec kopca (by zachowaæ ci¹g³oœæ kopca)
+	//Dodanie wÄ™zÅ‚a na koniec kopca (by zachowaÄ‡ ciÄ…gÅ‚oÅ›Ä‡ kopca)
 	if (size == 0)
 	{
 		tab[0].priority = new_node->priority;
@@ -72,13 +67,13 @@ void Heap::insert(int e, int p)
 		tab[size].priority = new_node->priority;
 		tab[size].element = new_node->element;
 
-		//Indeks w tablicy elementu w³aœnie dodanego
+		//Indeks w tablicy elementu wÅ‚aÅ›nie dodanego
 		int i = size;
 
-		//Indeks w tablicy rodzica w³aœnie dodanego elementu
+		//Indeks w tablicy rodzica wÅ‚aÅ›nie dodanego elementu
 		int j = (i - 1) / 2;
 
-		//Zmieniamy ustawienie wêz³a dopóki jego priorytet jest wiêkszy od jego rodzica i nie jest korzeniem
+		//Zmieniamy ustawienie wÄ™zÅ‚a dopÃ³ki jego priorytet jest wiÄ™kszy od jego rodzica i nie jest korzeniem
 		while ((tab[i].priority > tab[j].priority) &&  (i!=0))
 		{
 			Node temp = tab[j];
@@ -92,7 +87,7 @@ void Heap::insert(int e, int p)
 	
 
 
-	//Zwiêkszenie rozmiaru
+	//ZwiÄ™kszenie rozmiaru
 	size++;
 }
 
@@ -121,7 +116,7 @@ void Heap::extract_max()
 
 	while (i < size)
 	{
-		//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka lewego
+		//Sprawdzamy czy priorytet rodzica jes mniejszy niÅ¼ priorytet dziecka lewego
 		if (tab[i].priority < tab[jL].priority)
 		{
 			//Zamieniamy rodzica z dzieckiem lewym
@@ -135,7 +130,7 @@ void Heap::extract_max()
 		}
 		else
 		{
-			//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka prawego
+			//Sprawdzamy czy priorytet rodzica jes mniejszy niÅ¼ priorytet dziecka prawego
 			if (tab[i].priority < tab[jP].priority)
 			{
 				//Zamieniamy rodzica z dzieckiem prawym
@@ -149,7 +144,7 @@ void Heap::extract_max()
 			}
 		}
 
-		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/równy jemu)
+		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/rÃ³wny jemu)
 		if ((tab[i].priority >= tab[jL].priority) && (tab[i].priority >= tab[jP].priority))
 		{
 			break;
@@ -240,7 +235,7 @@ void Heap::increase_key(int e, int p, int i)
 	//Indeks rodzica
 	int parent = (child - 1) / 2;
 
-	//Wykonujemy dopóki priorytet dziecka jest wiêkszy ni¿ rodzica i jednoczeœnie dziecko nie jest korzeniem
+	//Wykonujemy dopÃ³ki priorytet dziecka jest wiÄ™kszy niÅ¼ rodzica i jednoczeÅ›nie dziecko nie jest korzeniem
 	while ((tab[child].priority > tab[parent].priority) && (child != 0))
 	{
 		//Zamiana miejscami rodzica z dzieckiem
@@ -269,7 +264,7 @@ void Heap::decrease_key(int e, int p, int i)
 
 	while (parent < size)
 	{
-		//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka lewego
+		//Sprawdzamy czy priorytet rodzica jes mniejszy niÅ¼ priorytet dziecka lewego
 		if (tab[parent].priority < tab[childL].priority)
 		{
 			//Zamieniamy rodzica z dzieckiem lewym
@@ -284,7 +279,7 @@ void Heap::decrease_key(int e, int p, int i)
 
 		else
 		{
-			//Sprawdzamy czy priorytet rodzica jes mniejszy ni¿ priorytet dziecka prawego
+			//Sprawdzamy czy priorytet rodzica jes mniejszy niÅ¼ priorytet dziecka prawego
 			if (tab[parent].priority < tab[childP].priority)
 			{
 				//Zamieniamy rodzica z dzieckiem prawym
@@ -298,7 +293,7 @@ void Heap::decrease_key(int e, int p, int i)
 			}
 		}
 
-		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/równy jemu)
+		//Sprawdzamy czy wezel jest juz na wlasciwym miejscu (czy jego dzieci maja prioirytet mnijeszy/rÃ³wny jemu)
 		if ((tab[parent].priority >= tab[childL].priority) && (tab[parent].priority >= tab[childP].priority))
 		{
 			break;
