@@ -153,7 +153,7 @@ void LinkedList::modify_key(int e, int p)
         // Przeszukiwanie listy w celu znalezienia miejsca do wstawienia elementu
         Nod* temp = head;
         Nod* prev_temp = nullptr;
-        while (temp && temp->priority < p) 
+        while (temp && temp->priority >= p) 
         {
             prev_temp = temp;
             temp = temp->next;
